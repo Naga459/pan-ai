@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+/* Design tokens taken from mock/PAN AI Chatbot Dashboard Mockup.png */
+@theme {
+  --color-navy-950: #071330;
+  --color-navy-900: #0b1b3f;
+  --color-navy-800: #13285a;
+  --color-navy-700: #1c3570;
+  --color-brand-600: #2563eb;
+  --color-brand-500: #3b82f6;
+  --color-brand-50: #eff5ff;
+  --color-surface: #f4f7fc;
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: #0f172a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}

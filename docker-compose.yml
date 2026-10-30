@@ -1,0 +1,23 @@
+name: pan-ai
+
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pan_ai}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pan_ai_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-pan_ai}
+    ports:
+      # Bound to localhost only; never expose the PAN database publicly.
+      - "127.0.0.1:${POSTGRES_HOST_PORT:-6760}:5432"
+    volumes:
+      - pan_ai_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pan_ai_pgdata:

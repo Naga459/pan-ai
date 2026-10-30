@@ -21,3 +21,7 @@ class ResizeObserverStub {
   disconnect() {}
 }
 window.ResizeObserver ??= ResizeObserverStub as unknown as typeof ResizeObserver
+
+// jsdom can't compute pseudo-element styles (antd asks for them); ignore the pseudo argument.
+const computeStyle = window.getComputedStyle.bind(window)
+window.getComputedStyle = (element: Element) => computeStyle(element)
